@@ -157,6 +157,7 @@ class Chef
       bash "#{new_resource.name}-cobbler-distro-update-kernel" do
         cobbler_kernel_loc = "/var/lib/tftpboot/images/#{new_resource.name}-#{new_resource.os_arch}/#{::File.basename(new_resource.kernel)}"
         code (<<-CODE)
+          echo '#{new_resource}';
           cobbler distro edit --name='#{new_resource.name}-#{new_resource.os_arch}' \
            --kernel='#{kernel_path}' \
            --breed=#{new_resource.os_breed} \
