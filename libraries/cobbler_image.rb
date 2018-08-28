@@ -153,7 +153,10 @@ class Chef
         }
         notifies :run, "bash[#{new_resource.name}-cobbler-distro-update-kernel]", :immediately
       end
-
+      log 'huh' do
+        level :info
+        message '#{new_resource} \n\n\n\n\n\n\n #{kernel_path}'
+      end 
       bash "#{new_resource.name}-cobbler-distro-update-kernel" do
         cobbler_kernel_loc = "/var/lib/tftpboot/images/#{new_resource.name}-#{new_resource.os_arch}/#{::File.basename(new_resource.kernel)}"
         code (<<-CODE)
